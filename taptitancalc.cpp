@@ -6,6 +6,7 @@ the amount of gold needed for a number of
 upgrades to heroes.
 ********************************************/
 
+#include <cstdio>
 #include <iostream>
 #include <iomanip>
 
@@ -20,9 +21,12 @@ int main() {
 
 	std:: cout << "Enter the number of levels to calculate: ";
 	std::cin >> numLevels;
+	getchar();
 
 	std:: cout << std::endl << std::endl << "Total gold needed is: " << 
-		CalcTotal(startVal, numLevels) << std::fixed <<  std::setprecision(2) << std::endl << std::endl;
+		CalcTotal(startVal, numLevels) << std::fixed <<  std::setprecision(2) << 
+		std::endl << "Press any key to exit...";
+		getchar();
 
 
 	return 0;
