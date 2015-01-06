@@ -19,15 +19,15 @@ int main() {
 	std::cout << std::endl << std::endl << "Enter the starting value: ";
 	std::cin >> startVal;
 
-	std:: cout << "Enter the number of levels to calculate: ";
+	std::cout << "Enter the number of levels to calculate: ";
 	std::cin >> numLevels;
 	getchar();
 
 	std:: cout << std::endl << std::endl << "Total gold needed is: " << 
 		CalcTotal(startVal, numLevels) << std::fixed <<  std::setprecision(2) << 
 		std::endl << "Press any key to exit...";
-		getchar();
-
+	getchar();
+	std::cout << std::endl;
 
 	return 0;
 }
