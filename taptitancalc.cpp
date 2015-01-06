@@ -22,7 +22,7 @@ int main() {
 	std::cin >> numLevels;
 
 	std:: cout << std::endl << std::endl << "Total gold needed is: " << 
-		CalcTotal(startVal, numLevels) << std::setprecision(2) << std::endl << std::endl;
+		CalcTotal(startVal, numLevels) << std::fixed <<  std::setprecision(3) << std::endl << std::endl;
 
 
 	return 0;
@@ -31,6 +31,7 @@ int main() {
 float CalcTotal(float curGold, int numLevels) {
 	float total = 0;
 	while (numLevels > 0) {
+		std::cout << "Total: " << total << std::endl;
 		total += curGold;
 		curGold *= 1.075;
 		numLevels--;
