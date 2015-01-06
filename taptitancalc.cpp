@@ -22,7 +22,7 @@ int main() {
 	std::cin >> numLevels;
 
 	std:: cout << std::endl << std::endl << "Total gold needed is: " << 
-		CalcTotal(startVal, numLevels) << std::setprecision(2) << std::endl;
+		CalcTotal(startVal, numLevels) << std::setprecision(2) << std::endl << std::endl;
 
 
 	return 0;
