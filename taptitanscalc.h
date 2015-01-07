@@ -1,6 +1,9 @@
 #ifndef TAPTITANSCALC_H
 #define TAPTITANSCALC_H
 
-std::string CalcTotal(float, int);
+double calcGold();
+void displayPrompt();
+unsigned int getChoice();
+void printGold(double);
 
 #endif

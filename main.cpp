@@ -6,29 +6,37 @@ the amount of gold needed for a number of
 upgrades to heroes.
 ********************************************/
 
-#include <cstdio>
-#include <iostream>
+
+
 #include <string>
 #include "taptitanscalc.h"
 
+
+
 int main() {
-	float startVal;
-	int numLevels;
+	unsigned int choice = 0;
 
-	std::cout << std::endl << std::endl << "Enter the starting value: ";
-	std::cin >> startVal;
+	while(choice != 3) {
+		switch(choice) {
+			// Init
+			case 0: {
+				displayPrompt();
+				choice = getChoice();
+			}
+			break;
 
-	std::cout << "Enter the number of levels to calculate: ";
-	std::cin >> numLevels;
-	getchar();
+			case 1: {
+				printGold(calcGold());
+				choice = 0;
+			}
+			break;
 
-	std::cout << std::endl << std::endl << "Total gold needed is: " 
-		<< CalcTotal(startVal, numLevels) 
-		<< std::endl << "Press any key to exit...";
+			case 2: {
 
-	// Pause at end of execution
-	getchar();
-	std::cout << std::endl;
+			}
+			break;
+		}
+	}
 
 	return 0;
 }
