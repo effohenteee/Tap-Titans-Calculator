@@ -9,8 +9,11 @@ upgrades to heroes.
 #include <cstdio>
 #include <iostream>
 #include <iomanip>
+#include <locale>
+#include <sstream>
+#include <string>
 
-float CalcTotal(float, int);
+std::string CalcTotal(float, int);
 
 int main() {
 	float startVal;
@@ -23,16 +26,18 @@ int main() {
 	std::cin >> numLevels;
 	getchar();
 
-	std:: cout << std::endl << std::endl << "Total gold needed is: " << 
-		CalcTotal(startVal, numLevels) << std::fixed <<  std::setprecision(2) << 
-		std::endl << "Press any key to exit...";
+	std:: cout << std::endl << std::endl << "Total gold needed is: " 
+		<< CalcTotal(startVal, numLevels) 
+		<< std::endl << "Press any key to exit...";
+
+	// Pause at end of execution
 	getchar();
 	std::cout << std::endl;
 
 	return 0;
 }
 
-float CalcTotal(float curGold, int numLevels) {
+std::string CalcTotal(float curGold, int numLevels) {
 	float total = 0;
 	while (numLevels > 0) {
 		total += curGold;
@@ -40,5 +45,19 @@ float CalcTotal(float curGold, int numLevels) {
 		numLevels--;
 	}
 
-	return total;
+	// Use comma, period, etc for large numbers
+	std::stringstream ss;
+	ss.imbue(std::locale(""));
+
+	// Keep two decimals for numbers less than 1000
+	if(total < 1000) {
+		ss << std::fixed << std::setprecision(2) << total;
+		return ss.str();
+	}
+
+	// Drop decimals for numbers greater than or equal to 1000
+	else {
+		ss << std::fixed << int(total);
+		return ss.str();
+	}		
 }
