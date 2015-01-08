@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <cmath>
 #include <cstdio>
 #include <iomanip>
@@ -19,18 +20,30 @@ double calcGold() {
 	std::cin >> numLevels;
 	getchar();
 
-	return startVal * pow(1.075, numLevels);
+	float total = 0;
+	while (numLevels > 0) {
+		total += startVal;
+		startVal *= 1.075;
+		numLevels--;
+	}
+
+	return total;
 }
 
 void displayPrompt() {
-	std::cout << std::endl << std::endl << "1. Hero Cost Calculator" << std::endl
+	std::cout << std::endl << "1. Hero Cost Calculator" << std::endl
 		<< "2. Monster Health Calculator" << std::endl
 		<< "3. Exit" << std::endl
 		<< "Please make your choice: ";
 }
 
+unsigned long long int calcMonsterHealth(int stage) {
+	return 18.5 * pow(1.57, std::min(stage, 150)) * pow(1.17, std::max(stage-150, 0));
+}
+
 unsigned int getChoice() {
-	unsigned int temp = getchar() - 48;
+	unsigned int temp;
+	std::cin >> temp;
 	getchar();
 	if(1 <= temp && temp <= 3) {
 		return temp;
@@ -39,7 +52,7 @@ unsigned int getChoice() {
 	else {
 		while(!(1 <= temp && temp <= 3)) {
 			std::cout << "Not valid, try again: ";
-			temp = getchar() - 48;
+			std::cin >> temp;
 			getchar();
 		}
 
