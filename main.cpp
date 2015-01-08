@@ -7,7 +7,7 @@ upgrades to heroes.
 ********************************************/
 
 
-
+#include <iostream>
 #include <string>
 #include "taptitanscalc.h"
 
@@ -32,11 +32,13 @@ int main() {
 			break;
 
 			case 2: {
-
+				printMonsterHealth();
+				choice = 0;
 			}
 			break;
 		}
 	}
 
+	std::cout << std::endl;
 	return 0;
 }

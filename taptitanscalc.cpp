@@ -37,7 +37,7 @@ void displayPrompt() {
 		<< "Please make your choice: ";
 }
 
-unsigned long long int calcMonsterHealth(int stage) {
+long double calcMonsterHealth(int stage) {
 	return 18.5 * pow(1.57, std::min(stage, 150)) * pow(1.17, std::max(stage-150, 0));
 }
 
@@ -75,7 +75,7 @@ void printGold(double cost) {
 
 	// Drop decimals for numbers greater than or equal to 1000
 	else {
-		ss << std::fixed << int(cost);
+		ss << std::fixed << (unsigned long long int)cost;
 		std::cout << std::endl << std::endl << "Total gold needed is: " 
 			<< ss.str() << std::endl
 			<< "Press any key to continue...";
@@ -84,4 +84,36 @@ void printGold(double cost) {
 	// Pause at end of execution
 	getchar();
 	std::cout << std::endl;
+}
+
+void printMonsterHealth() {
+	const unsigned int healthMult[] = {2, 4, 6, 7, 10};
+	long double maxHealth = 0;
+	unsigned int stage;
+	std::cout << std:: endl << "Enter current stage: ";
+	std::cin >> stage;
+	getchar();
+	std::cout << std::endl << std::endl;
+
+	for(int i = 0; i < 6; i++) {
+		maxHealth = calcMonsterHealth(stage);
+		std::cout << "Stage " << stage << ":\t" << std::setprecision(3) << maxHealth << " (normal)" << std::endl;
+
+		// If not a boss
+		if((stage-1)%5 != 4) {
+			std::cout << "\t\t" << std::setprecision(3) << maxHealth*healthMult[(stage-1)%5] << " (miniboss approx.)" << std::endl;
+		}
+
+		else {
+			std::cout << "\t\t" << std::setprecision(3) << maxHealth*healthMult[(stage-1)%5] << " (boss approx.)" << std::endl;
+		}
+
+		std::cout << std::endl;
+		stage++;	
+	}
+
+	std::cout << "Short exponent list:" << std::endl
+			<< "3:K 6:M 9:B 12:T 15:aa 18:bb 21:cc 24:dd 27:ee 30:ff 33:gg 36:hh"
+			// will need a break here to continue list
+			<< std::endl << std::endl;
 }
